@@ -6,12 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 
+
 public class DataManager {
     Connection con = null;
     //String url = "jdbc:mysql://localhost:3306/my_site?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     String url = "jdbc:mysql://localhost:3306/my_site";
     String user = "jsp_user";
-    String pass = "qwer1234";
+    String pass = "qqsseer1";
 
     private Connection openConnection() {
         try {
@@ -34,13 +35,35 @@ public class DataManager {
             con = null;
         }
     }
+    
 
+    public int insertPost(postForm post, MemberInfo member) {
+    	PreparedStatement pstmt = null;
+    	String query = "INSERT INTO post VALUES(?,?,?,?)";
+    	int res = 0;
+    	openConnection();
+    	try {
+    		pstmt = con.prepareStatement(query);
+    		pstmt.setString(1, member.getId());
+    		pstmt.setString(2, post.getTitle());
+    		pstmt.setString(3, post.getText());
+    		Timestamp ts = new Timestamp(System.currentTimeMillis());
+    		pstmt.setTimestamp(4, ts);
+    		res = pstmt.executeUpdate();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		closeConnection();
+    	}
+    	return res;
+    }
+    
     /*
      * 신규 회원정보 삽입
      */
     public int insertMember(MemberInfo member) {
         PreparedStatement pstmt = null;
-        String query = "INSERT INTO member VALUES(?,?,?,?,?,?)";
+        String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?)";
         int res = 0;
         openConnection();
         try {
@@ -52,6 +75,7 @@ public class DataManager {
             pstmt.setString(5, member.getEmail());
             Timestamp ts = new Timestamp(System.currentTimeMillis());
             pstmt.setTimestamp(6, ts);
+            pstmt.setString(7, member.getAddress());
             res = pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +94,7 @@ public class DataManager {
         int res = 0;
         openConnection();
         try {
-            pstmt = con.prepareCall(query);
+            pstmt = con.prepareStatement(query);
             pstmt.setString(1, id);
             res = pstmt.executeUpdate();
         } catch (Exception e) {
@@ -86,7 +110,7 @@ public class DataManager {
      */
     public int updateMember(MemberInfo member) {
         PreparedStatement pstmt = null;
-        String query = "UPDATE member SET pass=?, name=?, phone=?, email=? WHERE id=?";
+        String query = "UPDATE member SET pass=?, name=?, phone=?, email=?, address=? WHERE id=?";
         int res = 0;
         openConnection();
         try {
@@ -95,7 +119,8 @@ public class DataManager {
             pstmt.setString(2, member.getName());
             pstmt.setString(3, member.getPhone());
             pstmt.setString(4, member.getEmail());
-            pstmt.setString(5, member.getId());
+            pstmt.setString(5, member.getAddress());
+            pstmt.setString(6, member.getId());
             res = pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,6 +171,7 @@ public class DataManager {
             member.setName(rs.getString("name"));
             member.setPhone(rs.getString("phone"));
             member.setEmail(rs.getString("email"));
+            member.setAddress(rs.getString("address"));
             member.setReg_date(rs.getTimestamp("reg_date"));
             rs.close();
         } catch (Exception e) {
@@ -154,5 +180,27 @@ public class DataManager {
             closeConnection();
         }
         return member;
+    }
+    
+    public postForm getPost() {
+        PreparedStatement pstmt = null;
+        postForm post = new postForm();
+        String query = "SELECT * FROM post";
+        openConnection();
+        try {
+            pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            post.setId(rs.getString("id"));
+            post.setTitle(rs.getString("title"));
+            post.setText(rs.getString("text"));            
+            post.setReg_date(rs.getTimestamp("reg_date"));
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return post;
     }
 }

@@ -31,6 +31,8 @@
                     + "\"></td></tr>");
             out.print("<tr><td>이메일</td><td><input type=\"text\" name=\"email\" value=\"" + member.getEmail()
                     + "\"></tr>");
+            out.print("<tr><td>주소</td><td><input type=\"text\" name=\"address\" value=\"" + member.getAddress()
+                    + "\"></tr>");
             out.print("<tr><td>가입날짜</td><td>" + member.getReg_date() + "</td></tr>");
             out.print("<tr><td solspan=2><input type=\"submit\" value=\"수정\"></td></tr>");
             out.print("</table>");
@@ -41,7 +43,9 @@
     %>
     <a href="<%=request.getContextPath()%>/user/logout.jsp">로그아웃</a>
     <br />
-    <a href="<%=request.getContextPath()%>/user/delete.jsp?=<%=id%>">회원탈퇴</a>
+    <a href="<%=request.getContextPath()%>/user/delete.jsp?<%=id%>">회원탈퇴</a>
+    <br />
+    <a href="<%=request.getContextPath()%>/user/post_list.jsp">게시판</a>
     <br />
 </body>
 </html>

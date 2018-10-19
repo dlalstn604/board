@@ -3,11 +3,12 @@ package member;
 import java.sql.Timestamp;
 
 public class MemberInfo {
-    private String id;
+	public String id;
     private String pass;
     private String name;
     private String phone;
     private String email;
+    private String address;
     private Timestamp reg_date;
 
     public String getId() {
@@ -39,6 +40,12 @@ public class MemberInfo {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
     }
     public Timestamp getReg_date() {
         return reg_date;

@@ -1,0 +1,36 @@
+* {box-sizing: border-box;}
+
+.menu {
+	display: flex;
+	margin: 0px 200px 0px 200px;
+    justify-content: space-around;
+}
+.title {
+	position: relative;
+    text-align: center;
+    width: 600px;
+    border: 1px solid #d4d4d4;
+    background-color: white;
+}
+.date {
+	position: relative;
+    text-align: center;
+    width: 200px;
+    border: 1px solid #d4d4d4;
+    background-color: white;
+}
+.id {
+	position: relative;
+    text-align: center;
+    width: 100px;
+    border: 1px solid #d4d4d4;
+    background-color: white;
+}
+.header {
+    margin-top: 30px;
+    text-align: center;
+    padding: 50px;
+    font-size: 4em;
+    color: #333;
+    background-color: white;
+}

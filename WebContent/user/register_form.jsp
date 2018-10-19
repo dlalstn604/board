@@ -30,6 +30,10 @@
                 <td><input type="text" name="email" /></td>
             </tr>
             <tr>
+                <td>주소</td>
+                <td><input type="text" name="address" /></td>
+            </tr>
+            <tr>
                 <td colspan=2><input type="submit" value="가입" /></td>
             </tr>
         </table>
