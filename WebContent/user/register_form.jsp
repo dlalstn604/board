@@ -19,6 +19,18 @@ $(document).ready(function(){
 		} else if($(".passcheck").val() != $(".pass").val()) {
 			alert("비밀번호가 일치하지 않습니다.");
 			return false;
+		}  else if($(".phone").val().trim() == '') {
+			alert("전화번호가 공란입니다.");
+			return false;
+		} else if($(".phone").val().indexOf("-") != -1) {
+			alert("전화번호는 '-' 없이 입력해주세요.");
+			return false;
+		} else if($(".email").val().trim() == '') {
+			alert("이메일이 공란입니다.");
+			return false;
+		} else  if($(".email").val().indexOf("@") == -1) {
+			alert("이메일이 형식에 맞지 않습니다.");
+			return false;
 		};
 	});
 });
@@ -47,11 +59,11 @@ $(document).ready(function(){
             </tr>
             <tr>
                 <td>전화번호</td>
-                <td><input type="text" name="phone" /></td>
+                <td><input type="text" name="phone" class="phone"/></td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="text" name="email" /></td>
+                <td><input type="text" name="email" class="email"/></td>
             </tr>
             <tr>
                 <td>주소</td>
