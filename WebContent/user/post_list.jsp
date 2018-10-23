@@ -35,7 +35,6 @@
 	</tr>
 <%
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	String id = (String) session.getAttribute("ID");
 	postForm post = data.getPost();
 	Connection con = null;
 	Statement stmt = null;

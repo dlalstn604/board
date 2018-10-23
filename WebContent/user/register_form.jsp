@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,10 +17,12 @@
             <tr>
                 <td>아이디</td>
                 <td><input type="text" name="id" class="id" /></td>
+                <td style="display:none;" class="idText">아이디는 4~12자리로 만들어주세요.</td>
             </tr>
             <tr>
                 <td>비밀번호</td>
                 <td><input type="password" name="pass" class="pass" /></td>
+                <td style="display:none;" class="passText">비밀번호를 8자 이상으로 만들어주세요.</td>                
             </tr>
             <tr>
                 <td>비밀번호 확인</td>
@@ -30,6 +35,7 @@
             <tr>
                 <td>전화번호</td>
                 <td><input type="text" name="phone" class="phone"/></td>
+                <td style="display:none;" class="phoneText">전화번호는 '-'를 빼고 입력해주세요.</td>                
             </tr>
             <tr>
                 <td>이메일</td>
