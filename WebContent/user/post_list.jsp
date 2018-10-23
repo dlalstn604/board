@@ -40,7 +40,8 @@
 	Connection con = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	String url = "jdbc:mysql://localhost:3306/my_site";
+	String rPath = request.getContextPath();
+    String url = "jdbc:mysql://localhost:3306/my_site";
     String user = "jsp_user";
     String pass = "qqsseer1";
     try {
@@ -49,8 +50,8 @@
     	stmt = con.createStatement();
     	rs = stmt.executeQuery("select * from post");
     	while (rs.next()) {
-    		out.print("<tr>");
-    		out.print("<td>" + rs.getString("title") + "</td>");
+        	out.print("<tr>");
+    		out.print("<td>" + "<a href=" + rPath + "/user/post_detail.jsp" + ">" + rs.getString("title") + "</a>" + "</td>");
     		out.print("<td>" + rs.getString("id") + "</td>");
     		out.print("<td>" + formatter.format(post.getReg_date()) + "</td>");
     		out.print("</tr>");

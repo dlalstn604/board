@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>제목없음</title>
+<link rel="stylesheet" href="post.css" type="text/css"/>
 </head>
 <body>
 <div class="header">
